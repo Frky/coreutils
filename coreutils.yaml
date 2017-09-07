@@ -1,0 +1,342 @@
+b2sum:
+    args: "-b -l 512 input/poc.pdf"
+    bin: "bin/b2sum"
+base32:
+    args: "-w 4 bin/base32"
+    bin: "bin/base32"
+base64:
+    args: "-w 4 bin/base64"
+    bin: "bin/base64"
+basename:
+    args: "bin/basename name"
+    bin: "bin/basename"
+cat:
+    args: "bin/*"
+    bin: "bin/cat"
+# chcon:
+#     args: ""
+#     bin: "bin/chcon"
+chgrp:
+    args: "-hR adm bin"
+    bin: "bin/chgrp"
+    post: "chgrp -hR degoerdf bin"
+chmod:
+    args: "755 -R bin"
+    bin: "bin/chmod"
+    pre: "chmod -R 777 bin"
+chown:
+    args: "-vR degoerdf bin"
+    bin: "bin/chown"
+# MUST BE ROOT
+# chroot:
+#     args: ""
+#     bin: "bin/chroot"
+cksum:
+    args: "input/poc.pdf"
+    bin: "bin/cksum"
+comm:
+    args: "--nocheck-order bin/comm bin/cp"
+    bin: "bin/comm"
+cp:
+    args: "-vrf bin /tmp/test_bin"
+    bin: "bin/cp"
+csplit:
+    args: 'input/config.yaml --prefix=SCATSPLIT /\:/ {*}'
+    bin: "bin/csplit"
+    post: 'rm ./SCATSPLIT*'
+cut:
+    args: '-d "0" -f 1 input/poc.pdf'
+    bin: "bin/cut"
+date:
+    args: "-u"
+    bin: "bin/date"
+dd:
+    args: "if=/dev/urandom of=/dev/null count=100 bs=50K status=none"
+    bin: "bin/dd"
+df:
+    args: "-ahHi"
+    bin: "bin/df"
+dir:
+    args: "-a"
+    bin: "bin/dir"
+dircolors:
+    args: " "
+    bin: "bin/dircolors"
+du:
+    args: "-l -a -c -h -d 1 "
+    bin: "bin/du"
+echo:
+    args: "scat is a tool for dynamic analysis"
+    bin: "bin/echo"
+env:
+    args: " "
+    bin: "bin/env"
+expand:
+    args: "input/config.yaml"
+    bin: "bin/expand"
+expr:
+    args: '\(1 \> 2 \| 1 \!= 3\) \& \( "text" : "tes" \)'
+    bin: "bin/expr"
+factor:
+    args: "200560490130"
+    bin: "bin/factor"
+# false:
+#     args: " "
+#     bin: "bin/false"
+fmt:
+    args: "-c -w 80 input/config.yaml"
+    bin: "bin/fmt"
+fold:
+    args: "-b -s -w 10 input/config.yaml"
+    bin: "bin/fold"
+getlimits:
+    args: " "
+    bin: "bin/getlimits"
+ginstall:
+    args: "-p -v -s bin/* tmp/bin/"
+    bin: "bin/ginstall"
+    pre: "mkdir tmp/bin"
+    post: "rm -rf tmp/bin"
+groups:
+    args: " "
+    bin: "bin/groups"
+head:
+    args: "-n 150 bin/head"
+    bin: "bin/head"
+hostid:
+    args: " "
+    bin: "bin/hostid"
+id:
+    args: "-a -n -G -z"
+    bin: "bin/id"
+join:
+    args: "--nocheck-order bin/base32 bin/base64"
+    bin: "bin/join"
+kill:
+    args: "-s 9 `pidof nc`"
+    bin: "bin/kill"
+    pre: "nc -l 5556 &"
+link:
+    args: "input/poc.pdf tmp/poc.link"
+    bin: "bin/link"
+    post: "rm tmp/poc.link"
+ln:
+    args: "input/poc.pdf tmp/poc.link"
+    bin: "bin/ln"
+    post: "rm tmp/poc.link"
+logname:
+    args: ""
+    bin: "bin/logname"
+ls:
+    args: "-larth bin/"
+    bin: "bin/ls"
+make-prime-list:
+    args: "100000"
+    bin: "bin/make-prime-list"
+md5sum:
+    args: "input/poc.pdf"
+    bin: "bin/md5sum"
+mkdir:
+    args: "tmp/dir"
+    bin: "bin/mkdir"
+    post: "rmdir tmp/dir"
+mkfifo:
+    args: "tmp/scat"
+    bin: "bin/mkfifo"
+    post: "rm tmp/scat"
+mknod:
+    args: "tmp/fifo p"
+    bin: "bin/mknod"
+    post: "rm tmp/fifo"
+mktemp:
+    args: "-d tmp/dir.XXXXXX"
+    bin: "bin/mktemp"
+    post: "rm -rf tmp/dir.*"
+mv:
+    args: "tmp/bin tmp/binold"
+    bin: "bin/mv"
+    pre: "cp -r bin tmp/bin"
+    post: "rm -rf tmp/binold"
+# nice:
+#     args: "-n 5 input/fun"
+#     bin: "bin/nice"
+nl:
+    args: "input/config.yaml"
+    bin: "bin/nl"
+# nohup:
+#     args: "bin/fun"
+#     bin: "bin/nohup"
+nproc:
+    args: "--all"
+    bin: "bin/nproc"
+numfmt:
+    args: "--from=iec 373875638563598K"
+    bin: "bin/numfmt"
+od:
+    args: "input/config.yaml"
+    bin: "bin/od"
+# paste:
+#     args: " "
+#     bin: "bin/paste"
+pathchk:
+    args: "input/config.yaml"
+    bin: "bin/pathchk"
+pinky:
+    args: " "
+    bin: "bin/pinky"
+pr:
+    args: "input/config.yaml"
+    bin: "bin/pr"
+printenv:
+    args: " "
+    bin: "bin/printenv"
+printf:
+    args: "'scat %s\tcool!\n' 'is'"
+    bin: "bin/printf"
+ptx:
+    args: "input/config.yaml"
+    bin: "bin/ptx"
+pwd:
+    args: " "
+    bin: "bin/pwd"
+readlink:
+    args: "tmp/link"
+    bin: "bin/readlink"
+    pre: "ln -s input/poc.pdf tmp/link"
+    post: "rm tmp/link"
+realpath:
+    args: "input/config.yaml"
+    bin: "bin/realpath"
+rm:
+    args: "-vrf tmp/test_bin/*"
+    bin: "bin/rm"
+    pre: "cp -vr bin tmp/test_bin"
+rmdir:
+    args: "tmp/emptydir"
+    bin: "bin/rmdir"
+    pre: "mkdir tmp/emptydir"
+# runcon:
+#     args: ""
+#     bin: "bin/runcon"
+seq:
+    args: "1 7 100000"
+    bin: "bin/seq"
+sha1sum:
+    args: "input/poc.pdf"
+    bin: "bin/sha1sum"
+sha224sum:
+    args: "input/poc.pdf"
+    bin: "bin/sha224sum"
+sha256sum:
+    args: "input/poc.pdf"
+    bin: "bin/sha256sum"
+sha384sum:
+    args: "input/poc.pdf"
+    bin: "bin/sha384sum"
+sha512sum:
+    args: "input/poc.pdf"
+    bin: "bin/sha512sum"
+shred:
+    args: "-n 100 tmp/todel"
+    bin: "bin/shred"
+    pre: "cp input/poc.pdf tmp/todel"
+    post: "rm tmp/todel"
+shuf:
+    args: "tmp/config.yaml.copy"
+    bin: "bin/shuf"
+    pre: "cp input/config.yaml tmp/config.yaml.copy"
+    post: "rm tmp/config.yaml.copy"
+sleep:
+    args: "2"
+    bin: "bin/sleep"
+sort:
+    args: "input/*"
+    bin: "bin/sort"
+split:
+    args: "-b 1000 input/config.yaml SCATSPLIT"
+    bin: "bin/split"
+    post: "rm ./SCATSPLIT*"
+stat:
+    args: "input/poc.pdf"
+    bin: "bin/stat"
+# stdbuf:
+#     args: "-o 0 sort input/*"
+#     bin: "bin/stdbuf"
+stty:
+    args: " "
+    bin: "bin/stty"
+sum:
+    args: "input/poc.pdf"
+    bin: "bin/sum"
+sync:
+    args: " "
+    bin: "bin/sync"
+tac:
+    args: "bin/cat"
+    bin: "bin/tac"
+tail:
+    args: "-n 150 bin/tail"
+    bin: "bin/tail"
+tee:
+    args: "< input/poc.pdf"
+    bin: "bin/tee"
+test:
+    args: "-b input/config.yaml -a -e input/config.yaml -a -x bin/cat"
+    bin: "bin/test"
+timeout:
+    args: "1 bin/tee"
+    bin: "bin/timeout"
+touch:
+    args: "tmp/scat.tmp"
+    bin: "bin/touch"
+    post: "rm tmp/scat.tmp"
+tr:
+    args: "-d [:digit:] < input/poc.pdf"
+    bin: "bin/tr"
+# true:
+#     args: " "
+#     bin: "bin/true"
+truncate:
+    args: "-s 1000000 tmp/scat.tmp"
+    bin: "bin/truncate"
+    post: "rm tmp/scat.tmp"
+tsort:
+    args: "input/tosort"
+    bin: "bin/tsort"
+tty:
+    args: " "
+    bin: "bin/tty"
+uname:
+    args: "-a"
+    bin: "bin/uname"
+unexpand:
+    args: "-a -t 2 input/config.yaml"
+    bin: "bin/unexpand"
+uniq:
+    args: "-c -u input/coreutils.data"
+    bin: "bin/uniq"
+unlink:
+    args: "tmp/link"
+    bin: "bin/unlink"
+    pre: "ln -s input/poc.pdf tmp/link"
+uptime:
+    args: " "
+    bin: "bin/uptime"
+users:
+    args: " "
+    bin: "bin/users"
+vdir:
+    args: " "
+    bin: "bin/vdir"
+wc:
+    args: "-l -w input/config.yaml"
+    bin: "bin/wc"
+who:
+    args: "-a -b -d -H"
+    bin: "bin/who"
+whoami:
+    args: " "
+    bin: "bin/whoami"
+# yes:
+#     args: ""
+#     bin: "bin/yes"
